@@ -93,8 +93,26 @@ public class MainActivity extends AppCompatActivity {
             headerText.setText("O's turn");
         }
 
+        checkForDraw();
         checkForWin();
 
+    }
+
+    private void checkForDraw() {
+        for(int i = 0 ; i<9 ; i++){
+            if(filledPos[i] == -1)
+                    return;
+        }
+        new AlertDialog.Builder(this)
+                .setTitle("It's a draw")
+                .setPositiveButton("Restart game", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        restartGame();
+                    }
+                })
+                .setCancelable(false)
+                .show();
     }
 
     private void checkForWin(){
